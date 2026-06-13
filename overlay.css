@@ -1,0 +1,154 @@
+/* ============================================================
+   Chess Vision Overlay — Vector styling definitions
+   ============================================================ */
+
+.cvo-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;          /* never intercept clicks/drags */
+  z-index: 2;                    /* sits above board background, under pieces */
+  overflow: hidden;
+
+  /* Color Palette — Standard Theme (Green & Red) */
+  --cvo-mine-rgb: 34, 197, 94;     /* #22c55e */
+  --cvo-opp-rgb: 239, 68, 68;      /* #ef4444 */
+  --cvo-mine-hex: #22c55e;
+  --cvo-opp-hex: #ef4444;
+  --cvo-warn-hex: #eab308;         /* Yellow */
+  --cvo-danger-hex: #ef4444;       /* Red */
+  --cvo-defended-mine-hex: #f97316; /* Muted Orange */
+
+  --cvo-line-opacity: 0.3;
+}
+
+/* Color Palette is dynamically set via content.js inline variables */
+
+.cvo-svg-canvas {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+/* Base line properties */
+.cvo-line {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Your lines of sight */
+.cvo-side-mine {
+  stroke: rgba(var(--cvo-mine-rgb), var(--cvo-line-opacity));
+}
+
+/* Opponent's lines of sight */
+.cvo-side-opp {
+  stroke: rgba(var(--cvo-opp-rgb), var(--cvo-line-opacity));
+}
+
+/* Slider stroke widths */
+.cvo-line-queen {
+  stroke-width: 0.75px;
+}
+
+.cvo-line-rook {
+  stroke-width: 0.55px;
+}
+
+.cvo-line-bishop {
+  stroke-width: 0.5px;
+}
+
+/* Jump / short strokes */
+.cvo-line-knight {
+  stroke-width: 0.38px;
+  stroke-dasharray: 0.6 1;
+}
+
+.cvo-line-pawn {
+  stroke-width: 0.5px;
+  stroke-dasharray: 0.5 1;
+}
+
+.cvo-line-king {
+  stroke-width: 0.4px;
+  stroke-dasharray: 1 0.6;
+}
+
+/* Capture Highlight Reticles */
+.cvo-reticle {
+  fill: none;
+}
+
+/* 1. Hanging Opponent Piece (Undefended Capture Option) */
+.cvo-reticle-hanging-opp {
+  stroke: var(--cvo-mine-hex);
+  stroke-width: 0.85px;
+  filter: drop-shadow(0 0 1px rgba(var(--cvo-mine-rgb), 0.7));
+  animation: cvo-pulse-fast 1.8s infinite ease-in-out;
+}
+
+/* 2. Defended Opponent Piece (Trade Capture Option) */
+.cvo-reticle-defended-opp {
+  stroke: var(--cvo-warn-hex);
+  stroke-width: 0.8px;
+  stroke-dasharray: 1.8 1.2;
+  filter: drop-shadow(0 0 1px rgba(var(--cvo-mine-rgb), 0.5));
+}
+
+/* 3. Hanging Friendly Piece (Undefended Attack Danger) */
+.cvo-reticle-hanging-mine {
+  stroke: var(--cvo-opp-hex);
+  stroke-width: 1.0px;
+  filter: drop-shadow(0 0 1.5px rgba(var(--cvo-opp-rgb), 0.8));
+  animation: cvo-pulse-slow 1.2s infinite ease-in-out;
+}
+
+/* 4. Defended Friendly Piece (Protected Attack Danger) */
+.cvo-reticle-defended-mine {
+  stroke: var(--cvo-defended-mine-hex);
+  stroke-width: 0.8px;
+  filter: drop-shadow(0 0 1px rgba(var(--cvo-opp-rgb), 0.5));
+}
+
+/* 5. Destination Highlights (Interactive Pre-move Previews) */
+.cvo-dest-safe {
+  fill: rgba(var(--cvo-mine-rgb), 0.3);
+  stroke: rgba(var(--cvo-mine-rgb), 0.5);
+  stroke-width: 0.25px;
+}
+
+/* Warning: Destination is contested but backed up by support */
+.cvo-dest-warn {
+  fill: none;
+  stroke: var(--cvo-warn-hex);
+  stroke-width: 0.8px;
+  stroke-dasharray: 1.5 1.5;
+  filter: drop-shadow(0 0 1px rgba(234, 179, 8, 0.5));
+}
+
+/* Danger: Destination is heavily contested with NO support backup */
+.cvo-dest-danger {
+  fill: none;
+  stroke: var(--cvo-danger-hex);
+  stroke-width: 0.85px;
+  stroke-dasharray: 1.5 1.5;
+  filter: drop-shadow(0 0 1px rgba(var(--cvo-opp-rgb), 0.6));
+  animation: cvo-pulse-slow 1s infinite ease-in-out;
+}
+
+@keyframes cvo-pulse-fast {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes cvo-pulse-slow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}

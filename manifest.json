@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Chess Vision Overlay",
+  "version": "1.1.0",
+  "description": "Highlights every square your pieces control (green) and every square your opponent's pieces control (red) on online chess boards.",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.lichess.org/*",
+        "*://*.chess.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["overlay.css"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ]
+}
