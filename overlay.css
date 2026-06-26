@@ -117,6 +117,20 @@
   filter: drop-shadow(0 0 1px rgba(var(--cvo-opp-rgb), 0.5));
 }
 
+/* Pinned Reticle Style */
+.cvo-reticle-pinned {
+  fill: none;
+  stroke: #a855f7;            /* Violet / Purple */
+  stroke-width: 0.8px;
+  stroke-dasharray: 1.2 1.2;
+  filter: drop-shadow(0 0 1px rgba(168, 85, 247, 0.6));
+}
+
+/* Multiple Attacker Badge Style */
+.cvo-attacker-badge text {
+  font-family: inherit;
+}
+
 /* 5. Destination Highlights (Interactive Pre-move Previews) */
 .cvo-dest-safe {
   fill: rgba(var(--cvo-mine-rgb), 0.3);

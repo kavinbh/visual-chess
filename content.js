@@ -75,6 +75,16 @@
     return isSquareAttacked(king.file, king.rank, opponentColor, occ);
   }
 
+  function isPiecePinned(p, occ) {
+    if (p.type === "k") return false;
+    const originalIdx = idx(p.file, p.rank);
+    const currentlyInCheck = isKingInCheck(p.color, occ);
+    occ[originalIdx] = null;
+    const checkAfterRemoval = isKingInCheck(p.color, occ);
+    occ[originalIdx] = p;
+    return !currentlyInCheck && checkAfterRemoval;
+  }
+
   function computeVisionPaths(pieces) {
     const occ = new Array(64).fill(null);
     for (const p of pieces) occ[idx(p.file, p.rank)] = p;
@@ -396,7 +406,7 @@
       const rect = boardEl.getBoundingClientRect();
       if (!rect.width) return null;
 
-      const whiteBottom = !boardEl.classList.contains("flipped");
+      const whiteBottom = !boardEl.classList.contains("flipped") && !boardEl.closest(".flipped");
       const pieces = [];
       boardEl.querySelectorAll(".piece").forEach(el => {
         let color = null, type = null, file = null, rank = null;
@@ -406,9 +416,8 @@
           else if ((m = tok.match(/^square-([1-8])([1-8])$/))) {
             const x = +m[1];
             const y = +m[2];
-            // Coordinate transformation mapping screen positioning classes to logical directions
-            file = whiteBottom ? (x - 1) : (8 - x);
-            rank = whiteBottom ? (y - 1) : (8 - y);
+            file = x - 1;
+            rank = y - 1;
           }
         }
         if (color && type && file !== null && rank !== null) {
@@ -433,7 +442,7 @@
     enabled: true,
     showMine: true,
     showOpp: true,
-    colorblind: false, // fallback/legacy support
+    colorblind: false,
     opacity: 30,
     hoverMode: false,
     viewMode: "both",
@@ -768,6 +777,51 @@
           rect.setAttribute("rx", "1.6");
           rect.setAttribute("class", `cvo-reticle cvo-reticle-${reticleClass}`);
           svg.appendChild(rect);
+        }
+
+        // Draw Pin Indicator
+        const isPinned = isPiecePinned(piece, occupiedMap);
+        if (isPinned) {
+          const center = getSquareCenter(f, r, whiteBottom);
+          const circle = document.createElementNS(svgNS, "circle");
+          circle.setAttribute("cx", center.x);
+          circle.setAttribute("cy", center.y);
+          circle.setAttribute("r", "5.2");
+          circle.setAttribute("class", "cvo-reticle-pinned");
+          svg.appendChild(circle);
+        }
+
+        // Draw Multiple Attacker Badge
+        if (piece.color === myColor && oppAttacks > 1 && settings.showOpp) {
+          const screenCol = whiteBottom ? f : 7 - f;
+          const screenRow = whiteBottom ? 7 - r : r;
+          const x = screenCol * 12.5;
+          const y = screenRow * 12.5;
+
+          const badgeGroup = document.createElementNS(svgNS, "g");
+          badgeGroup.setAttribute("class", "cvo-attacker-badge");
+
+          const badgeCircle = document.createElementNS(svgNS, "circle");
+          badgeCircle.setAttribute("cx", x + 10.5);
+          badgeCircle.setAttribute("cy", y + 2.0);
+          badgeCircle.setAttribute("r", "1.3");
+          badgeCircle.setAttribute("fill", activeOppColor);
+          badgeCircle.setAttribute("stroke", "#ffffff");
+          badgeCircle.setAttribute("stroke-width", "0.2");
+          badgeGroup.appendChild(badgeCircle);
+
+          const badgeText = document.createElementNS(svgNS, "text");
+          badgeText.setAttribute("x", x + 10.5);
+          badgeText.setAttribute("y", y + 2.0);
+          badgeText.setAttribute("fill", "#ffffff");
+          badgeText.setAttribute("font-size", "1.5px");
+          badgeText.setAttribute("font-weight", "bold");
+          badgeText.setAttribute("text-anchor", "middle");
+          badgeText.setAttribute("dominant-baseline", "central");
+          badgeText.textContent = oppAttacks.toString();
+          badgeGroup.appendChild(badgeText);
+
+          svg.appendChild(badgeGroup);
         }
       }
     }
