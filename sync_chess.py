@@ -3,90 +3,101 @@ import json
 import requests
 from datetime import datetime
 
-CHESS_USERNAME = "xprtaker"
+CHESS_COM_USERNAME = "xprtaker"
+LICHESS_USERNAME = "xprtaker"
 
 DATA_FILE = "chess_history.json"
 TXT_FILE = "chess_stats.txt"
 
-headers = {"User-Agent": "GitHub-Chess-Sync/1.0 (Contact: kavinbharathi36@gmail.com)"}
+HEADERS = {"User-Agent": "GitHub-Chess-Sync/1.0 (Contact: kavinbharathi36@gmail.com)"}
 
-def fetch_data():
+def fetch_chess_com():
     now = datetime.utcnow()
-    # Fetch current month's games
-    games_url = f"https://api.chess.com/pub/player/{CHESS_USERNAME}/games/{now.year}/{now.month:02d}"
-    games_res = requests.get(games_url, headers=headers)
+    games_url = f"https://api.chess.com/pub/player/{CHESS_COM_USERNAME}/games/{now.year}/{now.month:02d}"
+    stats_url = f"https://api.chess.com/pub/player/{CHESS_COM_USERNAME}/stats"
+    
+    games_res = requests.get(games_url, headers=HEADERS)
+    stats_res = requests.get(stats_url, headers=HEADERS)
+    
     games = games_res.json().get("games", []) if games_res.status_code == 200 else []
-
-    # Fetch player stats (Ratings, Puzzles, etc.)
-    stats_url = f"https://api.chess.com/pub/player/{CHESS_USERNAME}/stats"
-    stats_res = requests.get(stats_url, headers=headers)
     stats = stats_res.json() if stats_res.status_code == 200 else {}
-
     return games, stats
 
-def update_files():
-    games, stats = fetch_data()
-    if not games:
-        print("No games retrieved.")
-        return
+def fetch_lichess():
+    # Lichess public API endpoint for user profile & recent games
+    user_url = f"https://lichess.org/api/user/{LICHESS_USERNAME}"
+    user_res = requests.get(user_url, headers={"Accept": "application/json"})
+    user_data = user_res.json() if user_res.status_code == 200 else {}
 
-    # Check for previously saved game URLs
+    # Fetch recent games (NDJSON format, max 20)
+    games_url = f"https://lichess.org/api/games/user/{LICHESS_USERNAME}?max=20&pgnInBody=false"
+    games_res = requests.get(games_url, headers={"Accept": "application/x-ndjson"})
+    
+    lichess_games = []
+    if games_res.status_code == 200 and games_res.text.strip():
+        for line in games_res.text.strip().split("\n"):
+            try:
+                lichess_games.append(json.loads(line))
+            except json.JSONDecodeError:
+                pass
+
+    return lichess_games, user_data.get("perfs", {})
+
+def update_files():
+    chess_games, chess_stats = fetch_chess_com()
+    lichess_games, lichess_perfs = fetch_lichess()
+
+    # Collect unique game IDs
     recorded_urls = set()
     if os.path.exists(DATA_FILE):
         with open(DATA_FILE, "r") as f:
             try:
-                existing_data = json.load(f)
-                recorded_urls = {g["url"] for g in existing_data.get("games", [])}
+                existing = json.load(f)
+                recorded_urls = {g["id"] for g in existing.get("games", [])}
             except json.JSONDecodeError:
                 pass
 
-    # Detect if any new games were played
-    new_games = [g for g in games if g["url"] not in recorded_urls]
+    # Normalize game entries
+    all_current_games = []
+    for g in chess_games:
+        all_current_games.append({"id": g["url"], "platform": "Chess.com", "end_time": g.get("end_time")})
+    for g in lichess_games:
+        all_current_games.append({"id": g.get("id"), "platform": "Lichess", "end_time": g.get("createdAt")})
+
+    new_games = [g for g in all_current_games if g["id"] not in recorded_urls]
 
     if not new_games:
-        print("No new matches found since last check.")
+        print("No new matches found on Chess.com or Lichess.")
         return
 
-    print(f"Found {len(new_games)} new game(s)! Updating repository...")
+    print(f"Found {len(new_games)} new game(s)! Updating logs...")
 
-    # Save JSON log of game URLs
-    all_data = {
-        "games": [{"url": g["url"], "end_time": g.get("end_time")} for g in games]
-    }
+    # Save raw JSON data
     with open(DATA_FILE, "w") as f:
-        json.dump(all_data, f, indent=2)
+        json.dump({"games": all_current_games}, f, indent=2)
 
-    # Format text output
-    blitz_rating = stats.get("chess_blitz", {}).get("last", {}).get("rating", "N/A")
-    bullet_rating = stats.get("chess_bullet", {}).get("last", {}).get("rating", "N/A")
-    rapid_rating = stats.get("chess_rapid", {}).get("last", {}).get("rating", "N/A")
-    tactics_rating = stats.get("tactics", {}).get("highest", {}).get("rating", "N/A")
-    puzzle_rush = stats.get("puzzle_rush", {}).get("best", {}).get("score", "N/A")
-
-    last_game = games[-1]
-    last_played_time = datetime.utcfromtimestamp(last_game["end_time"]).strftime("%Y-%m-%d %H:%M UTC")
+    # Format output for text file
+    cc_blitz = chess_stats.get("chess_blitz", {}).get("last", {}).get("rating", "N/A")
+    cc_rapid = chess_stats.get("chess_rapid", {}).get("last", {}).get("rating", "N/A")
+    
+    li_blitz = lichess_perfs.get("blitz", {}).get("rating", "N/A")
+    li_rapid = lichess_perfs.get("rapid", {}).get("rating", "N/A")
 
     text_content = f"""========================================
-CHESS.COM ACTIVITY LOG
+CHESS ACTIVITY LOG (Chess.com & Lichess)
 Last Updated: {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')}
 ========================================
 
---- PLAYER RATINGS ---
-• Rapid:   {rapid_rating}
-• Blitz:   {blitz_rating}
-• Bullet:  {bullet_rating}
-• Tactics (Peak): {tactics_rating}
-• Puzzle Rush (Best): {puzzle_rush}
+--- CHESS.COM RATINGS ---
+• Rapid: {cc_rapid}
+• Blitz: {cc_blitz}
 
---- LATEST MATCH ---
-• End Time: {last_played_time}
-• URL: {last_game.get('url')}
-• Mode: {last_game.get('time_class')}
-• Rules: {last_game.get('rules')}
+--- LICHESS RATINGS ---
+• Rapid: {li_rapid}
+• Blitz: {li_blitz}
 
-Total Matches Tracked This Month: {len(games)}
+Total Matches Tracked: {len(all_current_games)}
 """
-
     with open(TXT_FILE, "w") as f:
         f.write(text_content)
 
