@@ -9,7 +9,7 @@ LICHESS_USERNAME = "xprtaker"
 DATA_FILE = "chess_history.json"
 TXT_FILE = "chess_stats.txt"
 
-HEADERS = {"User-Agent": "GitHub-Chess-Sync/1.0 (Contact: kavinbharathi36@gmail.com)"}
+HEADERS = {"User-Agent": "GitHub-Chess-Sync/1.0 (Contact: user@example.com)"}
 
 def fetch_chess_com():
     now = datetime.utcnow()
@@ -24,12 +24,10 @@ def fetch_chess_com():
     return games, stats
 
 def fetch_lichess():
-    # Lichess public API endpoint for user profile & recent games
     user_url = f"https://lichess.org/api/user/{LICHESS_USERNAME}"
     user_res = requests.get(user_url, headers={"Accept": "application/json"})
     user_data = user_res.json() if user_res.status_code == 200 else {}
 
-    # Fetch recent games (NDJSON format, max 20)
     games_url = f"https://lichess.org/api/games/user/{LICHESS_USERNAME}?max=20&pgnInBody=false"
     games_res = requests.get(games_url, headers={"Accept": "application/x-ndjson"})
     
@@ -47,13 +45,15 @@ def update_files():
     chess_games, chess_stats = fetch_chess_com()
     lichess_games, lichess_perfs = fetch_lichess()
 
-    # Collect unique game IDs
+    # Safely collect recorded IDs (falls back to "url" if "id" is missing)
     recorded_urls = set()
     if os.path.exists(DATA_FILE):
         with open(DATA_FILE, "r") as f:
             try:
                 existing = json.load(f)
-                recorded_urls = {g["id"] for g in existing.get("games", [])}
+                recorded_urls = {
+                    g.get("id", g.get("url")) for g in existing.get("games", []) if isinstance(g, dict)
+                }
             except json.JSONDecodeError:
                 pass
 
