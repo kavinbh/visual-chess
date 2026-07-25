@@ -2,613 +2,491 @@
   "games": [
     {
       "id": "https://www.chess.com/game/live/170983977808",
-      "platform": "Chess.com",
       "end_time": 1782926531
     },
     {
       "id": "https://www.chess.com/game/live/170984278570",
-      "platform": "Chess.com",
       "end_time": 1782927066
     },
     {
       "id": "https://www.chess.com/game/live/171063989746",
-      "platform": "Chess.com",
       "end_time": 1783083829
     },
     {
       "id": "https://www.chess.com/game/live/171064427520",
-      "platform": "Chess.com",
       "end_time": 1783084556
     },
     {
       "id": "https://www.chess.com/game/live/171240574158",
-      "platform": "Chess.com",
       "end_time": 1783427168
     },
     {
       "id": "https://www.chess.com/game/live/171240841546",
-      "platform": "Chess.com",
       "end_time": 1783427574
     },
     {
       "id": "https://www.chess.com/game/live/171241104612",
-      "platform": "Chess.com",
       "end_time": 1783427937
     },
     {
       "id": "https://www.chess.com/game/live/171241425518",
-      "platform": "Chess.com",
       "end_time": 1783428594
     },
     {
       "id": "https://www.chess.com/game/live/171241907034",
-      "platform": "Chess.com",
       "end_time": 1783429187
     },
     {
       "id": "https://www.chess.com/game/live/171333324852",
-      "platform": "Chess.com",
       "end_time": 1783602677
     },
     {
       "id": "https://www.chess.com/game/live/171337391398",
-      "platform": "Chess.com",
       "end_time": 1783608696
     },
     {
       "id": "https://www.chess.com/game/live/171337814582",
-      "platform": "Chess.com",
       "end_time": 1783609450
     },
     {
       "id": "https://www.chess.com/game/live/171368906764",
-      "platform": "Chess.com",
       "end_time": 1783670653
     },
     {
       "id": "https://www.chess.com/game/live/171369053326",
-      "platform": "Chess.com",
       "end_time": 1783671054
     },
     {
       "id": "https://www.chess.com/game/live/171459152834",
-      "platform": "Chess.com",
       "end_time": 1783843592
     },
     {
       "id": "https://www.chess.com/game/live/171459310470",
-      "platform": "Chess.com",
       "end_time": 1783843797
     },
     {
       "id": "https://www.chess.com/game/live/171464935736",
-      "platform": "Chess.com",
       "end_time": 1783854868
     },
     {
       "id": "https://www.chess.com/game/live/171476496590",
-      "platform": "Chess.com",
       "end_time": 1783872608
     },
     {
       "id": "https://www.chess.com/game/live/171476826840",
-      "platform": "Chess.com",
       "end_time": 1783873154
     },
     {
       "id": "https://www.chess.com/game/live/171477200628",
-      "platform": "Chess.com",
       "end_time": 1783873624
     },
     {
       "id": "https://www.chess.com/game/live/171505351056",
-      "platform": "Chess.com",
       "end_time": 1783933142
     },
     {
       "id": "https://www.chess.com/game/live/171509429930",
-      "platform": "Chess.com",
       "end_time": 1783940861
     },
     {
       "id": "https://www.chess.com/game/live/171560331008",
-      "platform": "Chess.com",
       "end_time": 1784033712
     },
     {
       "id": "https://www.chess.com/game/live/171560755628",
-      "platform": "Chess.com",
       "end_time": 1784034129
     },
     {
       "id": "https://www.chess.com/game/live/171571439444",
-      "platform": "Chess.com",
       "end_time": 1784049176
     },
     {
       "id": "https://www.chess.com/game/live/171699210306",
-      "platform": "Chess.com",
       "end_time": 1784302214
     },
     {
       "id": "https://www.chess.com/game/live/171699630112",
-      "platform": "Chess.com",
       "end_time": 1784302639
     },
     {
       "id": "https://www.chess.com/game/live/171699976470",
-      "platform": "Chess.com",
       "end_time": 1784303053
     },
     {
       "id": "https://www.chess.com/game/live/171784346708",
-      "platform": "Chess.com",
       "end_time": 1784466801
     },
     {
       "id": "https://www.chess.com/game/live/171784643884",
-      "platform": "Chess.com",
       "end_time": 1784467192
     },
     {
       "id": "https://www.chess.com/game/live/171784889846",
-      "platform": "Chess.com",
       "end_time": 1784467908
     },
     {
       "id": "https://www.chess.com/game/live/171791809360",
-      "platform": "Chess.com",
       "end_time": 1784477779
     },
     {
       "id": "https://www.chess.com/game/live/171792129234",
-      "platform": "Chess.com",
       "end_time": 1784478719
     },
     {
       "id": "https://www.chess.com/game/live/171797989026",
-      "platform": "Chess.com",
       "end_time": 1784486820
     },
     {
       "id": "https://www.chess.com/game/live/171798620582",
-      "platform": "Chess.com",
       "end_time": 1784487721
     },
     {
       "id": "https://www.chess.com/game/live/171798853112",
-      "platform": "Chess.com",
       "end_time": 1784488844
     },
     {
       "id": "https://www.chess.com/game/live/171815117010",
-      "platform": "Chess.com",
       "end_time": 1784531628
     },
     {
       "id": "https://www.chess.com/game/live/171815349266",
-      "platform": "Chess.com",
       "end_time": 1784531793
     },
     {
       "id": "https://www.chess.com/game/live/171815775954",
-      "platform": "Chess.com",
       "end_time": 1784533243
     },
     {
       "id": "https://www.chess.com/game/live/171816284316",
-      "platform": "Chess.com",
       "end_time": 1784534032
     },
     {
       "id": "https://www.chess.com/game/live/171816414718",
-      "platform": "Chess.com",
       "end_time": 1784534328
     },
     {
       "id": "https://www.chess.com/game/live/171816473414",
-      "platform": "Chess.com",
       "end_time": 1784534471
     },
     {
       "id": "https://www.chess.com/game/live/171816575062",
-      "platform": "Chess.com",
       "end_time": 1784534666
     },
     {
       "id": "https://www.chess.com/game/live/171816619856",
-      "platform": "Chess.com",
       "end_time": 1784534798
     },
     {
       "id": "https://www.chess.com/game/live/171817092974",
-      "platform": "Chess.com",
       "end_time": 1784535864
     },
     {
       "id": "https://www.chess.com/game/live/171817736044",
-      "platform": "Chess.com",
       "end_time": 1784537259
     },
     {
       "id": "https://www.chess.com/game/live/171817799202",
-      "platform": "Chess.com",
       "end_time": 1784537343
     },
     {
       "id": "https://www.chess.com/game/live/171817850828",
-      "platform": "Chess.com",
       "end_time": 1784537505
     },
     {
       "id": "https://www.chess.com/game/live/171817915716",
-      "platform": "Chess.com",
       "end_time": 1784537641
     },
     {
       "id": "https://www.chess.com/game/live/171818608488",
-      "platform": "Chess.com",
       "end_time": 1784539062
     },
     {
       "id": "https://www.chess.com/game/live/171818725460",
-      "platform": "Chess.com",
       "end_time": 1784539310
     },
     {
       "id": "https://www.chess.com/game/live/171819404266",
-      "platform": "Chess.com",
       "end_time": 1784540675
     },
     {
       "id": "https://www.chess.com/game/live/171861489656",
-      "platform": "Chess.com",
       "end_time": 1784620021
     },
     {
       "id": "https://www.chess.com/game/live/171872522848",
-      "platform": "Chess.com",
       "end_time": 1784639450
     },
     {
       "id": "https://www.chess.com/game/live/171872622752",
-      "platform": "Chess.com",
       "end_time": 1784639607
     },
     {
       "id": "https://www.chess.com/game/live/171872815844",
-      "platform": "Chess.com",
       "end_time": 1784640378
     },
     {
       "id": "https://www.chess.com/game/live/171876643518",
-      "platform": "Chess.com",
       "end_time": 1784645658
     },
     {
       "id": "https://www.chess.com/game/live/171876976262",
-      "platform": "Chess.com",
       "end_time": 1784646148
     },
     {
       "id": "https://www.chess.com/game/live/171877331068",
-      "platform": "Chess.com",
       "end_time": 1784646428
     },
     {
       "id": "https://www.chess.com/game/live/171909947396",
-      "platform": "Chess.com",
       "end_time": 1784710873
     },
     {
       "id": "https://www.chess.com/game/live/171913647984",
-      "platform": "Chess.com",
       "end_time": 1784717533
     },
     {
       "id": "https://www.chess.com/game/live/171913667468",
-      "platform": "Chess.com",
       "end_time": 1784717674
     },
     {
       "id": "https://www.chess.com/game/live/171913747848",
-      "platform": "Chess.com",
       "end_time": 1784717808
     },
     {
       "id": "https://www.chess.com/game/live/171917002328",
-      "platform": "Chess.com",
       "end_time": 1784723490
     },
     {
       "id": "https://www.chess.com/game/live/171917417644",
-      "platform": "Chess.com",
       "end_time": 1784723681
     },
     {
       "id": "https://www.chess.com/game/live/171917508316",
-      "platform": "Chess.com",
       "end_time": 1784724339
     },
     {
       "id": "https://www.chess.com/game/live/171936332912",
-      "platform": "Chess.com",
       "end_time": 1784751062
     },
     {
       "id": "https://www.chess.com/game/live/171936499670",
-      "platform": "Chess.com",
       "end_time": 1784751223
     },
     {
       "id": "https://www.chess.com/game/live/171936514094",
-      "platform": "Chess.com",
       "end_time": 1784751375
     },
     {
       "id": "https://www.chess.com/game/live/171955049464",
-      "platform": "Chess.com",
       "end_time": 1784794920
     },
     {
       "id": "https://www.chess.com/game/live/171958027548",
-      "platform": "Chess.com",
       "end_time": 1784800695
     },
     {
       "id": "https://www.chess.com/game/live/171982220688",
-      "platform": "Chess.com",
       "end_time": 1784836973
     },
     {
       "id": "https://www.chess.com/game/live/171985765364",
-      "platform": "Chess.com",
       "end_time": 1784844119
     },
     {
       "id": "https://www.chess.com/game/live/171987230160",
-      "platform": "Chess.com",
       "end_time": 1784846166
     },
     {
       "id": "https://www.chess.com/game/live/171987240848",
-      "platform": "Chess.com",
       "end_time": 1784846578
     },
     {
       "id": "https://www.chess.com/game/live/171987595814",
-      "platform": "Chess.com",
       "end_time": 1784847448
     },
     {
       "id": "https://www.chess.com/game/live/172004138000",
-      "platform": "Chess.com",
       "end_time": 1784887268
     },
     {
       "id": "https://www.chess.com/game/live/172007844224",
-      "platform": "Chess.com",
       "end_time": 1784893334
     },
     {
       "id": "https://www.chess.com/game/live/172008142318",
-      "platform": "Chess.com",
       "end_time": 1784894252
     },
     {
       "id": "https://www.chess.com/game/live/172011622692",
-      "platform": "Chess.com",
       "end_time": 1784899483
     },
     {
       "id": "https://www.chess.com/game/live/172015260262",
-      "platform": "Chess.com",
       "end_time": 1784904094
     },
     {
       "id": "https://www.chess.com/game/live/172015592692",
-      "platform": "Chess.com",
       "end_time": 1784904754
     },
     {
       "id": "https://www.chess.com/game/live/172016853610",
-      "platform": "Chess.com",
       "end_time": 1784906405
     },
     {
       "id": "https://www.chess.com/game/live/172018350192",
-      "platform": "Chess.com",
       "end_time": 1784908510
     },
     {
       "id": "https://www.chess.com/game/live/172018689428",
-      "platform": "Chess.com",
       "end_time": 1784909035
     },
     {
       "id": "https://www.chess.com/game/live/172019050090",
-      "platform": "Chess.com",
       "end_time": 1784909797
     },
     {
       "id": "https://www.chess.com/game/live/172024167444",
-      "platform": "Chess.com",
       "end_time": 1784916498
     },
     {
       "id": "https://www.chess.com/game/live/172028515998",
-      "platform": "Chess.com",
       "end_time": 1784923418
     },
     {
       "id": "https://www.chess.com/game/live/172049816676",
-      "platform": "Chess.com",
       "end_time": 1784972722
     },
     {
       "id": "https://www.chess.com/game/live/172050134110",
-      "platform": "Chess.com",
       "end_time": 1784972870
     },
     {
       "id": "https://www.chess.com/game/live/172050254628",
-      "platform": "Chess.com",
       "end_time": 1784973118
     },
     {
       "id": "https://www.chess.com/game/live/172050342170",
-      "platform": "Chess.com",
       "end_time": 1784973218
     },
     {
       "id": "https://www.chess.com/game/live/172050401442",
-      "platform": "Chess.com",
       "end_time": 1784973646
     },
     {
       "id": "https://www.chess.com/game/live/172050624722",
-      "platform": "Chess.com",
       "end_time": 1784973853
     },
     {
       "id": "https://www.chess.com/game/live/172050740328",
-      "platform": "Chess.com",
       "end_time": 1784974410
     },
     {
       "id": "https://www.chess.com/game/live/172051042940",
-      "platform": "Chess.com",
       "end_time": 1784974829
     },
     {
       "id": "https://www.chess.com/game/live/172051307676",
-      "platform": "Chess.com",
       "end_time": 1784975117
     },
     {
       "id": "https://www.chess.com/game/live/172051506278",
-      "platform": "Chess.com",
       "end_time": 1784975557
     },
     {
       "id": "https://www.chess.com/game/live/172051974060",
-      "platform": "Chess.com",
       "end_time": 1784976404
     },
     {
       "id": "https://www.chess.com/game/live/172052147784",
-      "platform": "Chess.com",
       "end_time": 1784977050
     },
     {
       "id": "https://www.chess.com/game/live/172053159386",
-      "platform": "Chess.com",
       "end_time": 1784978586
     },
     {
       "id": "https://www.chess.com/game/live/172053403876",
-      "platform": "Chess.com",
       "end_time": 1784979396
     },
     {
       "id": "https://www.chess.com/game/live/172053938648",
-      "platform": "Chess.com",
       "end_time": 1784979760
     },
     {
       "id": "https://www.chess.com/game/live/172054129714",
-      "platform": "Chess.com",
       "end_time": 1784980387
     },
     {
       "id": "https://www.chess.com/game/live/172054477808",
-      "platform": "Chess.com",
       "end_time": 1784981124
     },
     {
-      "id": "hDNBhCxS",
-      "platform": "Lichess",
-      "end_time": 1784928614717
+      "id": "https://lichess.org/hDNBhCxS",
+      "end_time": 1784928614
     },
     {
-      "id": "n0TLCyEu",
-      "platform": "Lichess",
-      "end_time": 1784290790279
+      "id": "https://lichess.org/n0TLCyEu",
+      "end_time": 1784290790
     },
     {
-      "id": "yhZRCUvC",
-      "platform": "Lichess",
-      "end_time": 1784054835631
+      "id": "https://lichess.org/yhZRCUvC",
+      "end_time": 1784054835
     },
     {
-      "id": "VJ1OcZVs",
-      "platform": "Lichess",
-      "end_time": 1784054269419
+      "id": "https://lichess.org/VJ1OcZVs",
+      "end_time": 1784054269
     },
     {
-      "id": "mP0G9Dre",
-      "platform": "Lichess",
-      "end_time": 1784053720916
+      "id": "https://lichess.org/mP0G9Dre",
+      "end_time": 1784053720
     },
     {
-      "id": "mhSXerO9",
-      "platform": "Lichess",
-      "end_time": 1784052438882
+      "id": "https://lichess.org/mhSXerO9",
+      "end_time": 1784052438
     },
     {
-      "id": "RlHcMzmP",
-      "platform": "Lichess",
-      "end_time": 1784042583844
+      "id": "https://lichess.org/RlHcMzmP",
+      "end_time": 1784042583
     },
     {
-      "id": "8aBk7Q1Y",
-      "platform": "Lichess",
-      "end_time": 1784041413519
+      "id": "https://lichess.org/8aBk7Q1Y",
+      "end_time": 1784041413
     },
     {
-      "id": "K5oQwdo1",
-      "platform": "Lichess",
-      "end_time": 1784041238935
+      "id": "https://lichess.org/K5oQwdo1",
+      "end_time": 1784041238
     },
     {
-      "id": "MAAaRj7L",
-      "platform": "Lichess",
-      "end_time": 1784039969560
+      "id": "https://lichess.org/MAAaRj7L",
+      "end_time": 1784039969
     },
     {
-      "id": "KcEkNG41",
-      "platform": "Lichess",
-      "end_time": 1784039736748
+      "id": "https://lichess.org/KcEkNG41",
+      "end_time": 1784039736
     },
     {
-      "id": "WgeV6J2r",
-      "platform": "Lichess",
-      "end_time": 1784039310669
+      "id": "https://lichess.org/WgeV6J2r",
+      "end_time": 1784039310
     },
     {
-      "id": "J8iTcBre",
-      "platform": "Lichess",
-      "end_time": 1782583014877
+      "id": "https://lichess.org/J8iTcBre",
+      "end_time": 1782583014
     },
     {
-      "id": "XUt09hrQ",
-      "platform": "Lichess",
-      "end_time": 1782581268777
+      "id": "https://lichess.org/XUt09hrQ",
+      "end_time": 1782581268
     },
     {
-      "id": "WMHuSWei",
-      "platform": "Lichess",
-      "end_time": 1782580643547
+      "id": "https://lichess.org/WMHuSWei",
+      "end_time": 1782580643
     },
     {
-      "id": "51bmliaq",
-      "platform": "Lichess",
-      "end_time": 1782580442779
+      "id": "https://lichess.org/51bmliaq",
+      "end_time": 1782580442
     },
     {
-      "id": "zAXXMjMz",
-      "platform": "Lichess",
-      "end_time": 1782495390511
+      "id": "https://lichess.org/zAXXMjMz",
+      "end_time": 1782495390
     }
   ]
 }
