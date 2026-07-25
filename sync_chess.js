@@ -2,11 +2,8 @@ const fs = require('fs');
 
 const CHESS_COM_USERNAME = "xprtaker";
 const LICHESS_USERNAME = "xprtaker";
-
 const DATA_FILE = "chess_history.json";
 const TXT_FILE = "chess_stats.txt";
-
-// Lichess requires a descriptive User-Agent header
 const HEADERS = { "User-Agent": "GitHub-Chess-Sync/1.0 (Contact: user@example.com)" };
 
 async function fetchChessCom() {
@@ -40,7 +37,6 @@ async function fetchChessCom() {
 
 async function fetchLichess() {
   const userUrl = `https://lichess.org/api/user/${LICHESS_USERNAME}`;
-  // Added pgnInJson=true so Lichess returns JSON objects instead of PGN text
   const gamesUrl = `https://lichess.org/api/games/user/${LICHESS_USERNAME}?max=20&pgnInBody=false&pgnInJson=true`;
 
   let userPerfs = {};
