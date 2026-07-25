@@ -1,35 +1,27 @@
-name: Hourly Chess.com Sync
+name: Hourly Chess Sync
 
 on:
   schedule:
     # Runs at minute 0 of every hour
     - cron: '0 * * * *'
-  workflow_dispatch: # Enables a manual run button in GitHub UI
+  workflow_dispatch:
 
 jobs:
   sync-chess:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Allows the workflow to push commits back to repo
+      contents: write
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v5
-
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: '3.10'
-
-      - name: Install Dependencies
-        run: pip install requests
+        uses: actions/checkout@v4
 
       - name: Run Chess Sync Script
-        run: python sync_chess.py
+        run: node sync_chess.js
 
       - name: Commit and Push Changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add chess_history.json chess_stats.txt
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: sync chess.com matches" && git push)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: sync chess matches" && git push)
