@@ -139,14 +139,16 @@ async function updateFiles() {
   // Save raw JSON data
   fs.writeFileSync(DATA_FILE, JSON.stringify({ games: allCurrentGames }, null, 2));
 
-  // Extract ratings for Rapid, Blitz, AND Bullet
-  const ccBullet = chessStats?.chess_bullet?.last?.rating ?? "N/A";
-  const ccBlitz = chessStats?.chess_blitz?.last?.rating ?? "N/A";
-  const ccRapid = chessStats?.chess_rapid?.last?.rating ?? "N/A";
+  // Extract ratings for Rapid, Blitz, Bullet, AND Puzzles
+  const ccBullet  = chessStats?.chess_bullet?.last?.rating ?? "N/A";
+  const ccBlitz   = chessStats?.chess_blitz?.last?.rating ?? "N/A";
+  const ccRapid   = chessStats?.chess_rapid?.last?.rating ?? "N/A";
+  const ccPuzzle  = chessStats?.tactics?.highest?.rating ?? chessStats?.tactics?.lowest?.rating ?? "N/A";
 
-  const liBullet = lichessPerfs?.bullet?.rating ?? "N/A";
-  const liBlitz = lichessPerfs?.blitz?.rating ?? "N/A";
-  const liRapid = lichessPerfs?.rapid?.rating ?? "N/A";
+  const liBullet  = lichessPerfs?.bullet?.rating ?? "N/A";
+  const liBlitz   = lichessPerfs?.blitz?.rating ?? "N/A";
+  const liRapid   = lichessPerfs?.rapid?.rating ?? "N/A";
+  const liPuzzle  = lichessPerfs?.puzzle?.rating ?? "N/A";
 
   // Current UTC Timestamp string format
   const utcNow = new Date().toISOString().replace('T', ' ').substring(0, 16);
@@ -154,14 +156,16 @@ async function updateFiles() {
   const textContent = `CHESS ACTIVITY LOG Last Updated: ${utcNow} UTC
 
 --- CHESS.COM RATINGS ---
-• Rapid:  ${ccRapid}
-• Blitz:  ${ccBlitz}
-• Bullet: ${ccBullet}
+• Rapid:   ${ccRapid}
+• Blitz:   ${ccBlitz}
+• Bullet:  ${ccBullet}
+• Puzzles: ${ccPuzzle}
 
 --- LICHESS RATINGS ---
-• Rapid:  ${liRapid}
-• Blitz:  ${liBlitz}
-• Bullet: ${liBullet}
+• Rapid:   ${liRapid}
+• Blitz:   ${liBlitz}
+• Bullet:  ${liBullet}
+• Puzzles: ${liPuzzle}
 
 Total Matches Tracked: ${allCurrentGames.length}
 `;
