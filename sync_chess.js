@@ -83,12 +83,15 @@ async function updateFiles() {
   const { games: chessGames, stats: chessStats } = await fetchChessCom();
   const { lichessGames, userPerfs: lichessPerfs } = await fetchLichess();
 
-  // Safely collect recorded IDs/URLs
+  // Safely collect recorded IDs/URLs and keep existing history
   const recordedUrls = new Set();
+  let existingGames = [];
+  
   if (fs.existsSync(DATA_FILE)) {
     try {
       const existing = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
       if (Array.isArray(existing.games)) {
+        existingGames = existing.games; // Preserve existing games
         existing.games.forEach(g => {
           if (g && typeof g === 'object') {
             const id = g.id || g.url;
@@ -101,7 +104,7 @@ async function updateFiles() {
     }
   }
 
-  // Normalize game entries
+  // Normalize current API game entries
   const allCurrentGames = [];
   
   // 1. Process Chess.com games
@@ -127,17 +130,20 @@ async function updateFiles() {
     }
   }
 
+  // Filter only games that haven't been tracked yet
   const newGames = allCurrentGames.filter(g => !recordedUrls.has(g.id));
 
-  if (newGames.length === 0) {
+  let totalMatches = existingGames.length;
+
+  if (newGames.length > 0) {
+    console.log(`Found ${newGames.length} new game(s)! Updating logs...`);
+    // APPEND new games to existing history instead of overwriting
+    const updatedGames = [...existingGames, ...newGames];
+    fs.writeFileSync(DATA_FILE, JSON.stringify({ games: updatedGames }, null, 2));
+    totalMatches = updatedGames.length; // Ensure match count grows
+  } else {
     console.log("No new matches found on Chess.com or Lichess.");
-    return;
   }
-
-  console.log(`Found ${newGames.length} new game(s)! Updating logs...`);
-
-  // Save raw JSON data
-  fs.writeFileSync(DATA_FILE, JSON.stringify({ games: allCurrentGames }, null, 2));
 
   // Extract ratings for Rapid, Blitz, Bullet, AND Puzzles
   const ccBullet  = chessStats?.chess_bullet?.last?.rating ?? "N/A";
@@ -150,12 +156,8 @@ async function updateFiles() {
   const liRapid   = lichessPerfs?.rapid?.rating ?? "N/A";
   const liPuzzle  = lichessPerfs?.puzzle?.rating ?? "N/A";
 
-  // Current UTC Timestamp string format
-  const utcNow = new Date().toISOString().replace('T', ' ').substring(0, 16);
-
-  const textContent = `CHESS ACTIVITY LOG Last Updated: ${utcNow} UTC
-
---- CHESS.COM RATINGS ---
+  // Build the new stats body (excluding the timestamp)
+  const newStatsBody = `--- CHESS.COM RATINGS ---
 • Rapid:   ${ccRapid}
 • Blitz:   ${ccBlitz}
 • Bullet:  ${ccBullet}
@@ -167,10 +169,29 @@ async function updateFiles() {
 • Bullet:  ${liBullet}
 • Puzzles: ${liPuzzle}
 
-Total Matches Tracked: ${allCurrentGames.length}
-`;
+Total Matches Tracked: ${totalMatches}`;
 
-  fs.writeFileSync(TXT_FILE, textContent);
+  // Read existing stats to check if stats actually changed (prevent empty hourly commits)
+  let oldStatsBody = "";
+  if (fs.existsSync(TXT_FILE)) {
+    const previousTxt = fs.readFileSync(TXT_FILE, 'utf8');
+    const splitIndex = previousTxt.indexOf('--- CHESS.COM RATINGS ---');
+    if (splitIndex !== -1) {
+      oldStatsBody = previousTxt.substring(splitIndex).trim();
+    }
+  }
+
+  // Always write if there are new games OR if ratings (e.g. Puzzle ELO) have updated!
+  if (newGames.length > 0 || oldStatsBody !== newStatsBody) {
+    // Current UTC Timestamp string format
+    const utcNow = new Date().toISOString().replace('T', ' ').substring(0, 16);
+    const textContent = `CHESS ACTIVITY LOG Last Updated: ${utcNow} UTC\n\n${newStatsBody}\n`;
+    
+    fs.writeFileSync(TXT_FILE, textContent);
+    console.log("Stats updated successfully.");
+  } else {
+    console.log("Ratings unchanged and no new matches. Skipping stats update.");
+  }
 }
 
 updateFiles();
