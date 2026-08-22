@@ -975,6 +975,14 @@
     {
       "id": "https://www.chess.com/game/live/173329467452",
       "end_time": 1787337051
+    },
+    {
+      "id": "https://www.chess.com/game/live/173344070418",
+      "end_time": 1787366383
+    },
+    {
+      "id": "https://www.chess.com/game/daily/1016196366",
+      "end_time": 1787367600
     }
   ]
 }
